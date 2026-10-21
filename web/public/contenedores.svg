@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" role="img" aria-label="Contenedores apilados">
+  <rect width="220" height="220" rx="28" fill="#e8f1fb"/>
+  <!-- ola -->
+  <path d="M10 168 Q 35 150 60 168 T 110 168 T 160 168 T 210 168 V 210 H 10 Z" fill="#2b7de9" opacity=".25"/>
+  <!-- contenedores -->
+  <g stroke="#0b3d91" stroke-width="3" stroke-linejoin="round">
+    <rect x="30"  y="112" width="52" height="40" rx="4" fill="#2b7de9"/>
+    <rect x="84"  y="112" width="52" height="40" rx="4" fill="#4aa3ff"/>
+    <rect x="138" y="112" width="52" height="40" rx="4" fill="#2b7de9"/>
+    <rect x="57"  y="70"  width="52" height="40" rx="4" fill="#4aa3ff"/>
+    <rect x="111" y="70"  width="52" height="40" rx="4" fill="#2b7de9"/>
+    <rect x="84"  y="28"  width="52" height="40" rx="4" fill="#79bbff"/>
+  </g>
+  <!-- estrias de los contenedores -->
+  <g stroke="#0b3d91" stroke-width="2" opacity=".55">
+    <path d="M44 120v24M56 120v24M68 120v24"/>
+    <path d="M98 120v24M110 120v24M122 120v24"/>
+    <path d="M152 120v24M164 120v24M176 120v24"/>
+    <path d="M71 78v24M83 78v24M95 78v24"/>
+    <path d="M125 78v24M137 78v24M149 78v24"/>
+    <path d="M98 36v24M110 36v24M122 36v24"/>
+  </g>
+</svg>

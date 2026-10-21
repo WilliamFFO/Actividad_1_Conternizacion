@@ -1,0 +1,44 @@
+# Levanta las dos imagenes (base de datos + servidor web) con un solo comando:
+#   docker compose up -d --build
+name: tienda-docker
+
+services:
+  db:
+    build: ./db
+    image: tienda-mysql:1.0
+    container_name: tienda-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_pass
+      MYSQL_DATABASE: tienda_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: app_pass
+      TZ: America/Bogota
+    volumes:
+      - mysql_data:/var/lib/mysql      # los datos sobreviven aunque se borre el contenedor
+    healthcheck:
+      # Se prueba por TCP (127.0.0.1): durante el primer arranque MySQL levanta un
+      # servidor temporal sin red, y con "localhost" (socket) se daria por listo antes de tiempo.
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-proot_pass", "--silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  web:
+    build: ./web
+    image: tienda-web:1.0
+    container_name: tienda-web
+    environment:
+      DB_HOST: db                      # nombre del servicio = nombre de host en la red de Docker
+      DB_USER: app_user
+      DB_PASSWORD: app_pass
+      DB_NAME: tienda_db
+      TZ: America/Bogota
+    ports:
+      - "3000:3000"                    # http://localhost:3000
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
